@@ -3,19 +3,82 @@ import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 //import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Button from 'material-ui/Button'
 import { ListItem, List } from 'material-ui/List'
 import PropTypes from 'prop-types'
+import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
+import Button from 'material-ui/Button'
 
-function Question(props) {
-  return <h2 className="question">{props.content}</h2>
+const styles = {
+  card: {
+    maxWidth: '345px',
+    maxHeight: '500px'
+  },
+  media: {
+    height: '200px',
+    width: '345px'
+  },
+  content: {
+    fontWeight: 'bold'
+  }
 }
 
-Question.PropTypes = {
-  content: React.PropTypes.string.isRequired
+function SimpleMediaCard(props) {
+  const { classes } = props
+  return (
+    <div>
+      <Card className={classes.card}>
+        <CardMedia
+          className={classes.media}
+          image="photo"
+          title="Waterfront Park"
+        />
+
+        <CardContent className={classes.content}>
+          <Typography gutterBottom variant="headline" component="h2" />
+          <Typography component="p">Whats your deal?</Typography>
+        </CardContent>
+
+        <CardActions>
+          <div>
+            <Button size="small" color="primary">
+              Im just Visting!
+            </Button>
+          </div>
+
+          <div>
+            <Button size="small" color="primary">
+              Im thinking about a Move!
+            </Button>
+          </div>
+        </CardActions>
+      </Card>
+    </div>
+  )
 }
 
-export default Question
+SimpleMediaCard.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(SimpleMediaCard)
+
+// const styles = theme => ({
+//   Button: {
+//     text: 'baskerville'
+//   }
+// })
+//
+// const Question = props => {
+//   return (
+//     <Card>
+//       'Whats your deal?'
+//       <Button>Im just visiting</Button>
+//       <Button>Im thinking about a Move</Button>
+//     </Card>
+//   )
+// }
+//
+// export default Question
 
 // const Questions = props => {
 //   return (

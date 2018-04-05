@@ -5,6 +5,9 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import 'typeface-roboto'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+import { Provider } from 'react-redux'
+import store from './store'
+import { GET_QUESTIONS } from './constants'
 
 const customTheme = createMuiTheme({
   palette: {
@@ -19,7 +22,9 @@ const customTheme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={customTheme}>
-    <App />,
+    <Provider store={store}>
+      <App />
+    </Provider>
   </MuiThemeProvider>,
   document.getElementById('root')
 )

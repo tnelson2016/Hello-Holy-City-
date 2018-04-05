@@ -1,4 +1,4 @@
-const touristQuestions = [
+const barQuestions = [
   {
     question: "What's your deal?",
     answers: [
@@ -14,7 +14,7 @@ const touristQuestions = [
   }
 ]
 
-export default touristQuestions
+export default barQuestions
 
 //   },
 //   {
