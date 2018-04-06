@@ -7,7 +7,7 @@ import { ListItem, List } from 'material-ui/List'
 import PropTypes from 'prop-types'
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
 import Button from 'material-ui/Button'
-import { find } from 'ramda'
+import { find, pathOr } from 'ramda'
 import questions from '../../reducers/questions'
 
 const styles = {
@@ -25,6 +25,16 @@ const styles = {
 }
 
 function SingleChoiceQuestion(props) {
+  const URLPathQuestionKey = pathOr(
+    null,
+    ['match', 'params', 'questionKey'],
+    props
+  )
+  const URLPathQuestionGroupName = pathOr(
+    null,
+    ['match', 'params', 'questiongroupname'],
+    props
+  )
   const { classes, questions, match } = props
   console.log('questions', questions)
   console.log('foundquestion group', foundQuestionGroup)
@@ -32,7 +42,7 @@ function SingleChoiceQuestion(props) {
   console.log('questions', questions)
 
   const foundQuestion = find(
-    question => question.questionkey === 'budget',
+    question => question.questionKey === URLPathQuestionKey,
     questions
   )
   const foundQuestionGroup = find(qG => qG.name === 'bar', questions)
