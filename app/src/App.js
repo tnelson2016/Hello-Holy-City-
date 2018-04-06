@@ -21,7 +21,13 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/1" component={One} />
+
             <Route exact path="/Categories" component={Categories} />
+            <Route
+              exact
+              path="/singlechoice/:questionkey"
+              component={SingleChoiceQuestion}
+            />
             <Route
               exact
               path="/singlechoice/:questiongroupname/:questionkey"

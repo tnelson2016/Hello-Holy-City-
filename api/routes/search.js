@@ -2,11 +2,11 @@ const { getBar } = require('../dal')
 const fetch = require('isomorphic-fetch')
 const { pathOr, map, pick } = require('ramda')
 const url =
-  'https://api.yelp.com/v3/businesses/search?location={Charleston,west ashley, mount pleasant,sullivans island, james island, Folly}&categories=tours&limit=50'
+  'https://api.yelp.com/v3/businesses/search?location=charleston&categories=beaches&limit=50'
 
 module.exports = app => {
   app.get('/search', (req, res) => {
-    const searchCriteria = pathOr('charleston', ['query', 'location'], req)
+    const searchCriteria = pathOr('{}', ['query', 'categories'], req)
     fetch(`${url}`, {
       headers: {
         Authorization: `Bearer ${process.env.APIKEY}`,
@@ -26,13 +26,14 @@ module.exports = app => {
               'url',
               'categories',
               'display_phone',
-              'image_url'
+              'image_url',
+              'radius'
             ]),
             bars.businesses
           )
         )
       )
-      .catch(err => console.log('Error searchig Yelp', err))
+      .catch(err => console.log('Error searching Yelp', err))
   })
 
   app.get('/search/:id', (req, res) => {
