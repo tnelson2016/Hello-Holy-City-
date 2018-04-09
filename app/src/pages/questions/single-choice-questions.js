@@ -27,7 +27,7 @@ const styles = {
 function SingleChoiceQuestion(props) {
   const URLPathQuestionKey = pathOr(
     null,
-    ['match', 'params', 'questionKey'],
+    ['match', 'params', 'questionkey'],
     props
   )
   const URLPathQuestionGroupName = pathOr(
@@ -36,15 +36,17 @@ function SingleChoiceQuestion(props) {
     props
   )
   const { classes, questions, match } = props
-  console.log('questions', questions)
-  console.log('foundquestion group', foundQuestionGroup)
+  console.log('URLPathQuestionKey', URLPathQuestionKey)
+  console.log('URLPathQuestionGroupName group', URLPathQuestionGroupName)
 
-  console.log('questions', questions)
+  console.log('questions', JSON.stringify(questions))
 
   const foundQuestion = find(
-    question => question.questionKey === URLPathQuestionKey,
+    q => q.questionKey === URLPathQuestionKey,
     questions
   )
+  console.log('foundQuestion', foundQuestion)
+
   const foundQuestionGroup = find(qG => qG.name === 'bar', questions)
 
   return (
