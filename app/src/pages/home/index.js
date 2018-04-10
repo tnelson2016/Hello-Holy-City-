@@ -71,7 +71,7 @@ const Home = props => (
             color="primary"
             variant="display1"
           >
-            <Link to="/1">
+            <Link to="/singlechoice/deal">
               {' '}
               <Button className={props.classes.Button}>
                 Lets Get Started. Click Here!

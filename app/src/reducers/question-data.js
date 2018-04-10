@@ -1,0 +1,920 @@
+export const initialState = [
+  {
+    questiongroupname: 'intro',
+    question: 'What is your deal?',
+    questionKey: 'deal',
+    type: 'single',
+
+    options: [
+      {
+        optionText: 'Im just Visiting!',
+        selected: false,
+        value: 'visiting',
+        next: { questiongroupname: 'category', questionKey: 'todo' }
+      },
+      {
+        optionText: 'Im thinking about a move!',
+        selected: false,
+        value: 'move',
+        next: { questiongroupname: 'category', questionKey: 'welcome' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'category',
+    question: 'What do you want to do while you are in town?',
+    questionKey: 'todo',
+    type: 'single',
+    options: [
+      {
+        optionText: 'find a hotel',
+        selected: false,
+        value: 'hotel',
+        next: { questiongroupname: 'hotels', questionKey: 'budget' }
+      },
+
+      {
+        optionText: 'find a restaurants',
+        selected: false,
+        value: 'restaurants',
+        next: { questiongroupname: 'restaurants', questionKey: 'budget' }
+      },
+      {
+        optionText: 'find a bar',
+        selected: false,
+        value: 'bars',
+        next: { questiongroupname: 'bar', questionKey: 'budget' }
+      },
+
+      {
+        optionText: 'Find Tourist Attractions',
+        selected: false,
+        value: 'attractions',
+        next: { questiongroupname: 'attractions', questionKey: 'budget' }
+      },
+      {
+        optionText: 'get active',
+        selected: false,
+        value: 'active',
+        next: { questiongroupname: 'active', questionKey: 'budget' }
+      },
+      {
+        optionText: 'play golf',
+        selected: false,
+        value: 'golf',
+        next: { questiongroupname: 'golf', questionKey: 'budget' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'bar',
+    question: 'What is your budget?',
+    questionKey: 'budget',
+    type: 'single',
+    options: [
+      {
+        optionText: '$',
+        selected: false,
+        value: '$',
+        next: { questiongroupname: 'bar', questionKey: 'location' }
+      },
+      {
+        optionText: '$$',
+        selected: false,
+        value: '$$',
+        next: { questiongroupname: 'bar', questionKey: 'location' }
+      },
+      {
+        optionText: '$$$',
+        selected: false,
+        value: '$$$',
+        next: { questiongroupname: 'bar', questionKey: 'location' }
+      },
+      {
+        optionText: '$$$$',
+        selected: false,
+        value: '$$$$',
+        next: { questiongroupname: 'bar', questionKey: 'location' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'bar',
+    question: 'What part of town?',
+    questionKey: 'location',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Downtown',
+        selected: false,
+        value: 'downtown',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      },
+      {
+        optionText: 'Mt. Pleasant',
+        selected: false,
+        value: 'Mt. P.',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      },
+      {
+        optionText: 'James Island',
+        selected: false,
+        value: 'james',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      },
+      {
+        optionText: 'Folly',
+        selected: false,
+        value: 'folly',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      },
+      {
+        optionText: 'Sullivans',
+        selected: false,
+        value: 'sullivans',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      },
+      {
+        optionText: 'IOP',
+        selected: false,
+        value: 'iop',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      },
+      {
+        optionText: 'West Ashley',
+        selected: false,
+        value: 'West ashley',
+        next: { questiongroupname: 'bar', questionKey: 'ambience' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'bar',
+    question: 'What ambience do you prefer?',
+    questionKey: 'ambience',
+    type: 'single',
+    options: [
+      {
+        optionText: 'On the water',
+        selected: false,
+        value: 'water',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+
+      {
+        optionText: 'Chill',
+        selected: false,
+        value: 'chill',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Pub',
+        selected: false,
+        value: 'pub',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Craft Beer',
+        selected: false,
+        value: 'craft',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Dive Bar',
+        selected: false,
+        value: 'dive',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Boutique Cocktails',
+        selected: false,
+        value: 'boutique',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Secret Courtyard',
+        selected: false,
+        value: 'secret',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Rooftop',
+        selected: false,
+        value: 'rooftop',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      }
+    ]
+  },
+
+  {
+    questiongroupname: 'bar',
+    question: 'Do you need a pet-friendly bar?',
+    questionKey: 'pet',
+    type: 'single',
+
+    options: [
+      {
+        optionText: 'Yes, I want to bring my fur-babies!',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      },
+      {
+        optionText: 'No, Im leaving Fido at home ',
+        selected: false,
+        value: 'no',
+        next: { questiongroupname: 'bar', questionKey: 'pet' }
+      }
+    ]
+  },
+  /**********************Return Bar Results***********************************/
+  {
+    questiongroupname: 'hotels',
+    question: 'Whats your budget?',
+    questionKey: 'budget',
+    type: 'single',
+    options: [
+      {
+        optionText: '$',
+        selected: false,
+        value: '$',
+        next: { questiongroupname: 'hotels', questionKey: 'stay' }
+      },
+      {
+        optionText: '$$',
+        selected: false,
+        value: '$$',
+        next: { questiongroupname: 'hotels', questionKey: 'stay' }
+      },
+      {
+        optionText: '$$$',
+        selected: false,
+        value: '$$$',
+        next: { questiongroupname: 'hotels', questionKey: 'stay' }
+      },
+      {
+        optionText: '$$$$',
+        selected: false,
+        value: '$$$$',
+        next: { questiongroupname: 'hotels', questionKey: 'stay' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'hotels',
+    question: 'Where do you want to crash?',
+    questionKey: 'stay',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Mount Pleasant',
+        selected: false,
+        value: 'mount p',
+        next: { questiongroupname: 'hotels', questionKey: 'pet' }
+      },
+      {
+        optionText: 'IOP',
+        selected: false,
+        value: 'iOP',
+        next: { questiongroupname: 'hotels', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Sullivans',
+        selected: false,
+        value: 'sullys',
+        next: { questiongroupname: 'hotels', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Charleston',
+        selected: false,
+        value: 'Charleston',
+        next: { questiongroupname: 'hotels', questionKey: 'pet' }
+      },
+      {
+        optionText: 'James Island',
+        selected: false,
+        value: 'james',
+        next: { questiongroupname: 'hotels', questionKey: 'pet' }
+      },
+      {
+        optionText: 'Folly',
+        selected: false,
+        value: 'folly',
+        next: { questiongroupname: 'hotels', questionKey: 'pet' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'hotels',
+    question: 'Do you want to bring pets?',
+    questionKey: 'pet',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Yes, pets are welcomed!',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'hotels', questionKey: 'wi-fi' }
+      },
+      {
+        optionText: 'No Fur-babies allowed',
+        selected: false,
+        value: 'folly',
+        next: { questiongroupname: 'hotels', questionKey: 'wi-fi' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'hotels',
+    question: 'Do you need wi-fi?',
+    questionKey: 'wi-fi',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Yes',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      },
+      {
+        optionText: 'No',
+        selected: false,
+        value: 'no',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'hotels',
+    question: 'What type of hotel are you looking for?',
+    questionKey: 'hoteltype',
+    type: 'single',
+    options: [
+      {
+        optionText: 'family friendly ',
+        selected: false,
+        value: 'family',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      },
+      {
+        optionText: 'grownup getaway',
+        selected: false,
+        value: 'getaway',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      },
+      {
+        optionText: 'Free breakfast',
+        selected: false,
+        value: 'breakfast',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      },
+      {
+        optionText: 'Lobby bar',
+        selected: false,
+        value: 'Lobbybar',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      },
+      {
+        optionText: 'Concierge',
+        selected: false,
+        value: 'concierge',
+        next: { questiongroupname: 'hotels', questionKey: 'hoteltype' }
+      }
+    ]
+  },
+  /********************Return Hotels Results**************/
+  {
+    questiongroupname: 'restaurants',
+    question: 'Whats your budget?',
+    questionKey: 'budget',
+    type: 'single',
+
+    options: [
+      {
+        optionText: '$',
+        selected: false,
+        value: '$',
+        next: { questiongroupname: 'restaurants', questionKey: 'location' }
+      },
+      {
+        optionText: '$$',
+        selected: false,
+        value: '$$',
+        next: { questiongroupname: 'restaurants', questionKey: 'location' }
+      },
+      {
+        optionText: '$$$',
+        selected: false,
+        value: '$$$',
+        next: { questiongroupname: 'restaurants', questionKey: 'location' }
+      },
+      {
+        optionText: '$$$$',
+        selected: false,
+        value: '$$$$',
+        next: { questiongroupname: 'restaurants', questionKey: 'location' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'restaurants',
+    question: 'What ciy would you like to dine in?',
+    questionKey: 'location',
+    type: 'single',
+
+    options: [
+      {
+        optionText: 'Mount Pleasant',
+        selected: false,
+        value: 'mount p',
+        next: { questiongroupname: 'restaurants', questionKey: 'grub' }
+      },
+      {
+        optionText: 'IOP',
+        selected: false,
+        value: 'iOP',
+        next: { questiongroupname: 'restaurants', questionKey: 'grub' }
+      },
+      {
+        optionText: 'Sullivans',
+        selected: false,
+        value: 'sullys',
+        next: { questiongroupname: 'restaurants', questionKey: 'grub' }
+      },
+      {
+        optionText: 'West Ashley',
+        selected: false,
+        value: 'west ashley',
+        next: { questiongroupname: 'restaurants', questionKey: 'grub' }
+      },
+      {
+        optionText: 'James Island',
+        selected: false,
+        value: 'james',
+        next: { questiongroupname: 'restaurants', questionKey: 'grub' }
+      },
+      {
+        optionText: 'Folly',
+        selected: false,
+        value: 'folly',
+        next: { questiongroupname: 'restaurants', questionKey: 'grub' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'restaurants',
+    question: 'What type of grub are you looking for?',
+    questionKey: 'grub',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Bar Food',
+        selected: false,
+        value: 'bar',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      },
+      {
+        optionText: 'Seafood',
+        selected: false,
+        value: 'sea',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      },
+      {
+        optionText: 'Ethinic Food',
+        selected: false,
+        value: 'ethnic',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      },
+      {
+        optionText: 'BBQ',
+        selected: false,
+        value: 'bbq',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      },
+      {
+        optionText: 'High End',
+        selected: false,
+        value: 'high',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'restaurants',
+    question: 'Would you like to make a reservation?',
+    questionKey: 'reservations',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Yes, If they allow it',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      },
+      {
+        optionText: 'No, Ill just walk-in',
+        selected: false,
+        value: 'no',
+        next: { questiongroupname: 'restaurants', questionKey: 'reservations' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'golf',
+    question: 'How much do you want to spend on the links?',
+    questionKey: 'budget',
+    type: 'single',
+    options: [
+      {
+        optionText: '$',
+        selected: false,
+        value: '$',
+        next: { questiongroupname: 'golf', questionKey: 'cart' }
+      },
+      {
+        optionText: '$$',
+        selected: false,
+        value: 50,
+        next: { questiongroupname: 'golf', questionKey: 'cart' }
+      },
+      {
+        optionText: '$$$',
+        selected: false,
+        value: '$$$',
+        next: { questiongroupname: 'golf', questionKey: 'cart' }
+      },
+      {
+        optionText: '$$$$',
+        selected: false,
+        value: '$$$$',
+        next: { questiongroupname: 'golf', questionKey: 'cart' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'golf',
+    question: 'Do you want use of a cart?',
+    questionKey: 'cart',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Yes',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'golf', questionKey: 'location' }
+      },
+      {
+        optionText: 'No',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'golf', questionKey: 'location' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'golf',
+    question: 'What part of town do you want to golf?',
+    questionKey: 'location',
+    type: 'single',
+    options: [
+      {
+        optionText: 'West Ashley',
+        selected: false,
+        value: 'west ashley',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      },
+      {
+        optionText: 'Mount Pleasant',
+        selected: false,
+        value: 'mount pleasant',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      },
+      {
+        optionText: 'Charleston',
+        selected: false,
+        value: 'charleston',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      },
+      {
+        optionText: 'IOP',
+        selected: false,
+        value: 'iop',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      },
+      {
+        optionText: 'James Island',
+        selected: false,
+        value: 'james island',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      },
+      {
+        optionText: 'Kiawah Island',
+        selected: false,
+        value: 'james island',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'golf',
+    question: 'Would you like the course to have a locker room?',
+    questionKey: 'lockers',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Yes',
+        selected: false,
+        value: 'yes',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      },
+      {
+        optionText: 'No',
+        selected: false,
+        value: 'no',
+        next: { questiongroupname: 'golf', questionKey: 'lockers' }
+      }
+    ]
+  },
+  /*************Return Golf Results*********/
+
+  {
+    questiongroupname: 'active',
+    question: 'How much do you want to spend to get active?',
+    questionKey: 'budget',
+    type: 'single',
+    options: [
+      {
+        optionText: '$',
+        selected: false,
+        value: '$',
+        next: { questiongroupname: 'active', questionKey: 'facility' }
+      },
+      {
+        optionText: '$$',
+        selected: false,
+        value: '$$',
+        next: { questiongroupname: 'active', questionKey: 'facility' }
+      },
+      {
+        optionText: '$$$',
+        selected: false,
+        value: '$$$',
+        next: { questiongroupname: 'active', questionKey: 'facility' }
+      },
+      {
+        optionText: '$$$$',
+        selected: false,
+        value: '$$$$',
+        next: { questiongroupname: 'active', questionKey: 'facility' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'active',
+    question: 'Do you want to be indoor, outdoor or both?',
+    questionKey: 'facility',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Indoor',
+        selected: false,
+        value: 'indoor',
+        next: { questiongroupname: 'active', questionKey: 'sweaty' }
+      },
+      {
+        optionText: 'Outdoor',
+        selected: false,
+        value: 'outdoor',
+        next: { questiongroupname: 'active', questionKey: 'sweaty' }
+      },
+      {
+        optionText: 'Bit of Both',
+        selected: false,
+        value: 'both',
+        next: { questiongroupname: 'active', questionKey: 'sweaty' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'active',
+    question: 'How do you want to get sweaty?',
+    questionKey: 'sweaty',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Gym',
+        selected: false,
+        value: 'gym',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'Parks',
+        selected: false,
+        value: 'yoga',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'Yoga',
+        selected: false,
+        value: 'yoga',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'Adventurous Activities',
+        selected: false,
+        value: 'adventure',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'Competition',
+        selected: false,
+        value: 'competition',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'active',
+    question: 'Where do you want to burn those calories',
+    questionKey: 'burn',
+    type: 'single',
+
+    options: [
+      {
+        optionText: 'Mount Pleasant',
+        selected: false,
+        value: 'mount p',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'IOP',
+        selected: false,
+        value: 'iOP',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'Sullivans',
+        selected: false,
+        value: 'sullys',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'West Ashley',
+        selected: false,
+        value: 'west ashley',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'James Island',
+        selected: false,
+        value: 'james',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      },
+      {
+        optionText: 'Folly',
+        selected: false,
+        value: 'folly',
+        next: { questiongroupname: 'active', questionKey: 'burn' }
+      }
+    ]
+  },
+  /*************Return Active Results**********/
+
+  {
+    questiongroupname: 'attractions',
+    question: 'How much do you want to spend to see the beauty of Charleston?',
+    questionKey: 'budget',
+    type: 'single',
+    options: [
+      {
+        optionText: '$',
+        selected: false,
+        value: '$',
+        next: { questiongroupname: 'attractions', questionKey: 'location' }
+      },
+      {
+        optionText: '$$',
+        selected: false,
+        value: '$$',
+        next: { questiongroupname: 'attractions', questionKey: 'location' }
+      },
+      {
+        optionText: '$$$',
+        selected: false,
+        value: '$$$',
+        next: { questiongroupname: 'attractions', questionKey: 'location' }
+      },
+      {
+        optionText: '$$$$',
+        selected: false,
+        value: '$$$$',
+        next: { questiongroupname: 'attractions', questionKey: 'location' }
+      }
+    ]
+  },
+
+  {
+    questiongroupname: 'attractions',
+    question: 'What part of town do you want to explore?',
+    questionKey: 'location',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Mount Pleasant',
+        selected: false,
+        value: 'mount p',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'IOP',
+        selected: false,
+        value: 'iOP',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'Sullivans',
+        selected: false,
+        value: 'sullys',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'West Ashley',
+        selected: false,
+        value: 'west ashley',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'James Island',
+        selected: false,
+        value: 'james',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'Folly',
+        selected: false,
+        value: 'folly',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      }
+    ]
+  },
+
+  {
+    questiongroupname: 'attractions',
+    question: 'What would you like to explore?',
+    questionKey: 'explore',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Historical Charleston',
+        selected: false,
+        value: 'historical charleston',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'Nature of Charleston',
+        selected: false,
+        value: 'nature',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'Tours',
+        selected: false,
+        value: 'Tours',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      },
+      {
+        optionText: 'Aquarium',
+        selected: false,
+        value: 'aquarium',
+        next: { questiongroupname: 'attractions', questionKey: 'explore' }
+      }
+    ]
+  },
+  {
+    questiongroupname: 'category',
+    question:
+      'Thanks for considering Charleston you next home! Here is a little help getting started.',
+    questionKey: 'welcome',
+    type: 'single',
+    options: [
+      {
+        optionText: 'Search for employment',
+        selected: false,
+        value: 'employment',
+        next: { questiongroupname: 'category', questionKey: 'welcome' }
+      },
+      {
+        optionText: 'Search for a realtor',
+        selected: false,
+        value: 'nature',
+        next: { questiongroupname: 'category', questionKey: 'welcome' }
+      },
+      {
+        optionText: 'Search Apartments',
+        selected: false,
+        value: 'Tours',
+        next: { questiongroupname: 'category', questionKey: 'welcome' }
+      }
+    ]
+  }
+]

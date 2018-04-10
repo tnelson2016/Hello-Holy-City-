@@ -7,20 +7,20 @@ import { ListItem, List } from 'material-ui/List'
 import PropTypes from 'prop-types'
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
 import Button from 'material-ui/Button'
-import { find, pathOr } from 'ramda'
+import { find, pathOr, map, compose } from 'ramda'
 import questions from '../../reducers/questions'
+import { SINGLE_CHOICE_QUESTION_ANSWERED } from '../../constants'
+import MenuAppBar from '../../Components/MenuAppBar'
 
 const styles = {
-  card: {
-    maxWidth: '400px',
-    maxHeight: '550px'
+  question: {
+    fontSize: '30px'
   },
-  media: {
-    height: '300px',
-    width: '345px'
-  },
-  content: {
-    textDecoration: 'none'
+
+  button: {
+    padding: '10px',
+    marginBottom: '10px',
+    marginTop: '10px'
   }
 }
 
@@ -30,57 +30,64 @@ function SingleChoiceQuestion(props) {
     ['match', 'params', 'questionkey'],
     props
   )
+  console.log('URLPathQuestionKey', URLPathQuestionKey)
   const URLPathQuestionGroupName = pathOr(
     null,
     ['match', 'params', 'questiongroupname'],
     props
   )
+  console.log('URLPathQuestionGroupName', URLPathQuestionGroupName)
   const { classes, questions, match } = props
-  console.log('URLPathQuestionKey', URLPathQuestionKey)
-  console.log('URLPathQuestionGroupName group', URLPathQuestionGroupName)
 
-  console.log('questions', JSON.stringify(questions))
+  const foundQuestion = URLPathQuestionGroupName
+    ? find(
+        q =>
+          q.questionKey === URLPathQuestionKey &&
+          q.questiongroupname === URLPathQuestionGroupName,
+        questions
+      )
+    : find(q => q.questionKey === URLPathQuestionKey, questions)
 
-  const foundQuestion = find(
-    q => q.questionKey === URLPathQuestionKey,
-    questions
-  )
+  //const foundQuestionGroup = find(qG => qG.name === 'bar', questions)
   console.log('foundQuestion', foundQuestion)
-
-  const foundQuestionGroup = find(qG => qG.name === 'bar', questions)
-
   return (
     <div>
       <center>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="https://i.pinimg.com/originals/8e/fb/51/8efb51cdb9ed2b08a7e4fe667d2cd53d.jpg"
-            title="Money"
-          />
-          <div>
-            <center>
-              <CardContent className={classes.content}>
-                <Typography gutterBottom variant="headline" component="h2" />
-                <Typography component="p">
-                  How much are you willing to spend?
-                </Typography>
-              </CardContent>
-            </center>
-          </div>
-          <div>
-            <CardActions>
-              <CardContent>
-                <Link to="/Cities" style={{ textDecoration: 'none' }}>
-                  <Button className={props.classes.Button}>$</Button>
-                  <Button className={props.classes.Button}>$$</Button>
-                  <Button className={props.classes.Button}>$$$</Button>
-                  <Button className={props.classes.Button}>$$$$</Button>
-                </Link>
-              </CardContent>
-            </CardActions>
-          </div>
-        </Card>
+        <div>
+          <center>
+            <Typography
+              gutterBottom
+              variant="headline"
+              className={classes.question}
+            >
+              {foundQuestion.question}
+            </Typography>
+          </center>
+        </div>
+
+        <div>
+          {map(
+            option => (
+              <div>
+                <Button
+                  variant="raised"
+                  className={classes.button}
+                  value={option.value}
+                  key={option.value}
+                  onClick={props.buttonClick(
+                    option.next.questiongroupname,
+                    option.next.questionKey,
+                    option.value,
+                    props.history
+                  )}
+                >
+                  {option.optionText}
+                </Button>
+              </div>
+            ),
+            foundQuestion.options
+          )}
+        </div>
       </center>
     </div>
   )
@@ -91,22 +98,27 @@ SingleChoiceQuestion.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log('STATE', state)
   return {
     questions: state.questions
   }
 }
 
-const connector = connect(mapStateToProps)
+const mapActionsToProps = dispatch => {
+  return {
+    buttonClick: (questiongroupname, questionkey, value, history) => e => {
+      dispatch({
+        type: SINGLE_CHOICE_QUESTION_ANSWERED,
+        payload: { questiongroupname, questionkey, value }
+      })
 
-export default withStyles(styles)(connector(SingleChoiceQuestion))
+      const navToURL = questiongroupname
+        ? `/singlechoice/${questiongroupname}/${questionkey}`
+        : `/singlechoice/${questionkey}`
+      history.push(navToURL)
+    }
+  }
+}
 
-// const Categories = props => {
-//   const { categories } = props
-//   return (
-//     <div>
-//       <h1>What are you in the mood for?</h1> map{props.categories} =>{' '}
-//       <button>Hello World!</button>}
-//     </div>
-//   )
-// }
+const connector = connect(mapStateToProps, mapActionsToProps)
+
+export default connector(withStyles(styles)(SingleChoiceQuestion))
