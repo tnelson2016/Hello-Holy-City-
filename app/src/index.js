@@ -9,17 +9,19 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { GET_QUESTIONS } from './constants'
 import { getBars } from './action-creators/index'
-
-// TODO bring in action creator for getbars, etc.
+import indigo from 'material-ui/colors/indigo'
+import purple from 'material-ui/colors/purple'
+import red from 'material-ui/colors/red'
+import blue from 'material-ui/colors/blue'
+import blueGrey from 'material-ui/colors/blueGrey'
 
 const customTheme = createMuiTheme({
   palette: {
-    primary: {
-      main: '#000000'
-    },
-    secondary: {
-      main: '#808080'
-    }
+    primary: blueGrey,
+    secondary: purple,
+    error: red,
+    contrastThreshold: 3,
+    tonalOffset: 0.2
   }
 })
 

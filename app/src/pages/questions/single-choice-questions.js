@@ -11,16 +11,27 @@ import { find, pathOr, map, compose } from 'ramda'
 import questions from '../../reducers/questions'
 import { SINGLE_CHOICE_QUESTION_ANSWERED } from '../../constants'
 import MenuAppBar from '../../Components/MenuAppBar'
+import Toolbar from 'material-ui/Toolbar'
+import IconButton from 'material-ui/IconButton'
+import MenuIcon from 'material-ui-icons/Menu'
+import Drawer from '../../Components/Drawer'
+import { TOGGLE_DRAWER } from '../../constants'
 
 const styles = {
   question: {
-    fontSize: '30px'
+    fontSize: '20px',
+    marginTop: '70px'
   },
 
   button: {
     padding: '10px',
     marginBottom: '10px',
-    marginTop: '10px'
+    marginTop: '10px',
+    fontSize: '13px'
+  },
+
+  appbar: {
+    fontSize: '50px'
   }
 }
 
@@ -30,13 +41,13 @@ function SingleChoiceQuestion(props) {
     ['match', 'params', 'questionkey'],
     props
   )
-  console.log('URLPathQuestionKey', URLPathQuestionKey)
+  // console.log('URLPathQuestionKey', URLPathQuestionKey)
   const URLPathQuestionGroupName = pathOr(
     null,
     ['match', 'params', 'questiongroupname'],
     props
   )
-  console.log('URLPathQuestionGroupName', URLPathQuestionGroupName)
+  // console.log('URLPathQuestionGroupName', URLPathQuestionGroupName)
   const { classes, questions, match } = props
 
   const foundQuestion = URLPathQuestionGroupName
@@ -49,9 +60,18 @@ function SingleChoiceQuestion(props) {
     : find(q => q.questionKey === URLPathQuestionKey, questions)
 
   //const foundQuestionGroup = find(qG => qG.name === 'bar', questions)
-  console.log('foundQuestion', foundQuestion)
+
   return (
     <div>
+      <center>
+        <MenuAppBar
+          title="Hello-Holy-City"
+          className={classes.appbar}
+          onClick={props.drawer ? <Drawer /> : null}
+          // {...props}
+          // showBackArrow={false}
+        />
+      </center>
       <center>
         <div>
           <center>
@@ -75,6 +95,8 @@ function SingleChoiceQuestion(props) {
                   value={option.value}
                   key={option.value}
                   onClick={props.buttonClick(
+                    foundQuestion.questionKey,
+                    foundQuestion.questiongroupname,
                     option.next.questiongroupname,
                     option.next.questionKey,
                     option.value,
@@ -98,22 +120,38 @@ SingleChoiceQuestion.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log('What is state', state)
+
   return {
-    questions: state.questions
+    questions: state.questions,
+    drawers: state.drawers
   }
 }
 
 const mapActionsToProps = dispatch => {
   return {
-    buttonClick: (questiongroupname, questionkey, value, history) => e => {
+    buttonClick: (
+      currentquestionKey,
+      currentgroupname,
+      nextquestiongroupname,
+      nextquestionKey,
+      value,
+      history
+    ) => e => {
       dispatch({
         type: SINGLE_CHOICE_QUESTION_ANSWERED,
-        payload: { questiongroupname, questionkey, value }
+        payload: { currentgroupname, currentquestionKey, value }
       })
 
-      const navToURL = questiongroupname
-        ? `/singlechoice/${questiongroupname}/${questionkey}`
-        : `/singlechoice/${questionkey}`
+      const mapActionsToProps = (dispatch, getState) => {
+        return {
+          toggleDrawer: () => dispatch({ type: TOGGLE_DRAWER })
+        }
+      }
+
+      const navToURL = nextquestiongroupname
+        ? `/singlechoice/${nextquestiongroupname}/${nextquestionKey}`
+        : `/singlechoice/${nextquestionKey}`
       history.push(navToURL)
     }
   }
@@ -121,4 +159,4 @@ const mapActionsToProps = dispatch => {
 
 const connector = connect(mapStateToProps, mapActionsToProps)
 
-export default connector(withStyles(styles)(SingleChoiceQuestion))
+export default Drawer(connector(withStyles(styles)(SingleChoiceQuestion)))

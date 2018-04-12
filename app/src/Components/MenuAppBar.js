@@ -1,51 +1,89 @@
-// import React from 'react'
-// import PropTypes from 'prop-types'
-// import { withStyles } from 'material-ui/styles'
-// import AppBar from 'material-ui/AppBar'
-// import Toolbar from 'material-ui/Toolbar'
-// import Typography from 'material-ui/Typography'
-// import Button from 'material-ui/Button'
-// import IconButton from 'material-ui/IconButton'
-// import MenuIcon from '@material-ui/icons/Menu'
-//
-// const styles = {
-//   root: {
-//     flexGrow: 1
-//   },
-//   flex: {
-//     flex: 1
-//   },
-//   menuButton: {
-//     marginLeft: -12,
-//     marginRight: 20
-//   }
-// }
-//
-// function ButtonAppBar(props) {
-//   const { classes } = props
-//   return (
-//     <div className={classes.root}>
-//       <AppBar position="static">
-//         <Toolbar>
-//           <IconButton
-//             className={classes.menuButton}
-//             color="inherit"
-//             aria-label="Menu"
-//           >
-//             <MenuIcon />
-//           </IconButton>
-//           <Typography variant="title" color="inherit" className={classes.flex}>
-//             Title
-//           </Typography>
-//           <Button color="inherit">Login</Button>
-//         </Toolbar>
-//       </AppBar>
-//     </div>
-//   )
-// }
-//
-// ButtonAppBar.propTypes = {
-//   classes: PropTypes.object.isRequired
-// }
-//
-// export default withStyles(styles)(ButtonAppBar)
+import React from 'react'
+import AppBar from 'material-ui/AppBar'
+import Toolbar from 'material-ui/Toolbar'
+import Typography from 'material-ui/Typography'
+import IconButton from 'material-ui/IconButton'
+import MenuIcon from 'material-ui-icons/Menu'
+import SearchIcon from 'material-ui-icons/Search'
+import { withStyles } from 'material-ui/styles'
+import { connect } from 'react-redux'
+import { TOGGLE_DRAWER } from '../constants'
+import { Link } from 'react-router-dom'
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    color: '#99c1b1'
+  },
+  flex: {
+    flex: 1
+  },
+  firstButton: {
+    marginLeft: -12,
+    marginRight: 12
+  },
+  lastButton: {
+    marginLeft: 12,
+    marginRight: -12
+  }
+})
+
+const MenuAppBar = props => {
+  const { classes } = props
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="fixed">
+        <Toolbar>
+          {props.showBackArrow ? (
+            <IconButton
+              className={classes.firstButton}
+              color="contrast"
+              aria-label="Menu"
+              onClick={e => props.navigateBack(props.history)}
+            />
+          ) : (
+            <IconButton
+              className={classes.firstButton}
+              color="contrast"
+              aria-label="Menu"
+              onClick={props.toggleDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
+          <Typography className={classes.flex} variant="title" color="inherit">
+            {props.title}
+          </Typography>
+          <Link to="/search">
+            <IconButton
+              className={classes.lastButton}
+              color="contrast"
+              aria-label="Search"
+            />
+          </Link>
+        </Toolbar>
+      </AppBar>
+    </div>
+  )
+}
+
+const mapStateToProps = state => {
+  return {
+    drawerToggleState: state.drawer
+  }
+}
+
+const mapActionToProps = (dispatch, getState) => {
+  return {
+    toggleDrawer: () => dispatch({ type: TOGGLE_DRAWER }),
+    navigateBack: history => {
+      console.log('history', history)
+      history.goBack()
+    }
+  }
+}
+
+const connector = connect(mapStateToProps, mapActionToProps)
+
+export default connector(withStyles(styles)(MenuAppBar))

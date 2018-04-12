@@ -14,6 +14,8 @@ import { bars, bar } from './reducers/bars'
 
 import thunk from 'redux-thunk'
 
+import drawer from './reducers/drawer'
+
 const store = createStore(
   combineReducers({
     questions,
@@ -28,7 +30,8 @@ const store = createStore(
     hotels,
     hotel,
     restaurants,
-    restaurant
+    restaurant,
+    drawer
   }),
   applyMiddleware(thunk)
 )

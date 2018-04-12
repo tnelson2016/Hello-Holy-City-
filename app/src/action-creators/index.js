@@ -1,3 +1,4 @@
+import { find } from 'ramda'
 import fetch from 'isomorphic-fetch'
 import {
   SET_BARS,
@@ -51,4 +52,17 @@ export const getRestaurants = async (dispatch, getState) => {
   const res = await fetch(`${url}/restaurants`)
   const results = await res.json()
   dispatch({ type: SET_RESTAURANTS, payload: results })
+}
+
+export const filterResult = questions => async (dispatch, getState) => {
+  const foundQuestion = find(q => q.questionKey === 'todo', questions)
+  console.log('foundQuestion', foundQuestion)
+  const todoAnswer = find(o => o.selected === true, 'options')
+  console.log('todoAnswer', todoAnswer)
+  if (todoAnswer === 'golf') fetch(`${url}/courses`)
+  else if (todoAnswer === 'hotel') fetch(`${url}/hotels`)
+  else if (todoAnswer === 'bar') fetch(`${url}/bars`)
+  else if (todoAnswer === 'resturant') fetch(`${url}/restaurants`)
+  else if (todoAnswer === 'attraction') fetch(`${url}/attractions`)
+  else if (todoAnswer === 'active') fetch(`${url}/activities`)
 }

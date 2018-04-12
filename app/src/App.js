@@ -3,14 +3,13 @@ import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import Home from './pages/home'
-import One from './pages/initialQuestion/firstQuestion'
-import Categories from './pages/Categories/index'
+import GolfResults from './pages/golf-results'
+import BarResults from './pages/bar-results'
+import HotelResults from './pages/hotel-results'
+import RestaurantResults from './pages/restaurant-results'
+import AttractionResults from './pages/attraction-results'
+import ActiveResults from './pages/active-results'
 import SingleChoiceQuestion from './pages/questions/single-choice-questions'
-import Cities from './pages/Cities/cities'
-import Atmosphere from './pages/barQuestions/atmosphere'
-import Pets from './pages/Pet-Friendly/pets'
-import touristsQuestions from './Questions/touristsQuestions'
-
 import { update } from 'react-addons-update'
 
 class App extends Component {
@@ -20,23 +19,30 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/" component={Home} />
-            // <Route exact path="/1" component={One} />
-            // <Route exact path="/todo" component={Categories} />
-            //{' '}
             <Route
               exact
               path="/singlechoice/:questionkey"
               component={SingleChoiceQuestion}
             />
-            //{' '}
             <Route
               exact
               path="/singlechoice/:questiongroupname/:questionkey"
               component={SingleChoiceQuestion}
             />
-            // <Route exact path="/Cities" component={Cities} />
-            // <Route exact path="/Atmosphere" component={Atmosphere} />
-            // <Route exact path="/Pets" component={Pets} />
+            <Route exact path="/results/golf" component={GolfResults} />
+            <Route exact path="/results/bar" component={BarResults} />
+            <Route exact path="/results/hotel" component={HotelResults} />
+            <Route
+              exact
+              path="/results/restaurant"
+              component={RestaurantResults}
+            />
+            <Route
+              exact
+              path="/results/attraction"
+              component={AttractionResults}
+            />
+            <Route exact path="/results/active" component={ActiveResults} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -208,19 +208,19 @@ export const initialState = [
 
   {
     questiongroupname: 'bar',
-    question: 'Do you need a pet-friendly bar?',
+    question: 'Do want to take your dog to the bar?',
     questionKey: 'pet',
     type: 'single',
 
     options: [
       {
-        optionText: 'Yes, I want to bring my fur-babies!',
+        optionText: 'Yes!',
         selected: false,
         value: 'yes',
         next: { questiongroupname: 'bar', questionKey: 'pet' }
       },
       {
-        optionText: 'No, Im leaving Fido at home ',
+        optionText: 'No:(',
         selected: false,
         value: 'no',
         next: { questiongroupname: 'bar', questionKey: 'pet' }

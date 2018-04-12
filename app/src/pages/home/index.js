@@ -4,81 +4,73 @@ import { Link } from 'react-router-dom'
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui/styles'
+import MenuAppBar from '../../Components/MenuAppBar'
+import indigo from 'material-ui/colors/indigo'
+import purple from 'material-ui/colors/purple'
+import red from 'material-ui/colors/red'
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
+
+const customTheme = createMuiTheme({
+  palette: {
+    primary: indigo,
+    secondary: purple,
+    error: red,
+    contrastThreshold: 3,
+    tonalOffset: 0.2
+  }
+})
 
 const styles = theme => ({
   image: {
-    position: 'relative',
-    width: '100%',
-    paddingTop: '0',
-    padding: '100',
-    opacity: '.4',
-    minHeight: '210%',
-    minWidth: '1024px'
+    textAlign: 'center',
+    marginTop: '35px',
+    maxWidth: '300px'
   },
   Greeting: {
-    position: 'absolute',
-    top: '50px',
-    left: '0',
-    width: '100%',
-    color: 'black',
-    fontFamily: 'Baskerville'
+    fontSize: '20px',
+    paddingTop: 50
   },
   Button: {
-    position: 'absolute',
-    paddingTop: '10px',
-    align: 'center',
-    fontFamily: 'Baskerville',
-    fontSize: '40%',
-    fontWeight: '550'
+    maxWidth: 300,
+    backgroundColor: '#99c1b1',
+    borderRadius: '5px',
+    paddingTop: 15
   },
-  logo: {
-    fontFamily: 'Baskerville',
-    fontSize: '50%',
-    paddingTop: '3%'
-  },
-  button: {
-    position: 'static',
-    paddingTop: '90px',
-    marginRight: '22%',
-    color: 'black'
+  centered: {
+    margin: 'auto',
+    textAlign: 'center',
+    width: 300
   }
 })
 
 const Home = props => (
-  <div>
+  <div style={{ backgroundColor: '#fbf1e3' }}>
     <center>
       <img
         alt="Hello Holy City!"
         className={props.classes.image}
-        src="/bridge-charleston-south-carolina-skyline-CHARLESTON0717.jpg"
+        src="/helloholycity.jpg"
       />
+      <div>
+        <Link style={{ textDecoration: 'none' }} to="/singlechoice/intro/deal">
+          <Button color="white" className={props.classes.Button}>
+            Lets Get Started. Click Here!
+          </Button>
+        </Link>
+      </div>
       <h2>
         <Typography
           className={props.classes.Greeting}
-          color="primary"
+          // color="primary"
           variant="display1"
         >
-          HELLO HOLY CITY!
-          <Typography
-            className={props.classes.logo}
-            color="primary"
-            variant="display1"
-          >
-            SMILING FACES, BEAUTIFUL PLACES!
-          </Typography>
-          <Typography
-            className={props.classes.button}
-            color="primary"
-            variant="display1"
-          >
-            <Link to="/singlechoice/deal">
-              {' '}
-              <Button className={props.classes.Button}>
-                Lets Get Started. Click Here!
-              </Button>
-            </Link>
-          </Typography>
+          SMILING FACES, BEAUTIFUL PLACES!
         </Typography>
+        <Typography
+          className={props.classes.button}
+          // color="primary"
+          variant="display1"
+        />
       </h2>
     </center>
   </div>
