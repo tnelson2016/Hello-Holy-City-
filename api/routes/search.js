@@ -2,14 +2,15 @@ const { getBar } = require('../dal')
 const fetch = require('isomorphic-fetch')
 const { pathOr, map, pick } = require('ramda')
 const url =
-  'https://api.yelp.com/v3/businesses/search?location=charleston&categories=beaches&limit=50'
-
+  'https://api.yelp.com/v3/businesses/search?location=charleston&categories=hotels&limit=50'
+console.log('bearer token', `Bearer ${process.env.APIKEY}`)
 module.exports = app => {
   app.get('/search', (req, res) => {
     const searchCriteria = pathOr('{}', ['query', 'categories'], req)
     fetch(`${url}`, {
       headers: {
         Authorization: `Bearer ${process.env.APIKEY}`,
+
         'Content-Type': 'application/json'
       },
       method: 'GET'

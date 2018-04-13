@@ -24,22 +24,26 @@ const styles = theme => ({
   image: {
     textAlign: 'center',
     marginTop: '35px',
-    maxWidth: '300px'
+    maxWidth: '300px',
+    maxHeight: '500'
   },
   Greeting: {
     fontSize: '20px',
-    paddingTop: 50
+    paddingTop: 160,
+    fontWeight: 'bold',
+    paddingBottom: '100px'
   },
   Button: {
     maxWidth: 300,
     backgroundColor: '#99c1b1',
     borderRadius: '5px',
-    paddingTop: 15
+    paddingTop: 10,
+    marginTop: 50
   },
   centered: {
     margin: 'auto',
     textAlign: 'center',
-    width: 300
+    paddingTop: '50px'
   }
 })
 
@@ -49,7 +53,7 @@ const Home = props => (
       <img
         alt="Hello Holy City!"
         className={props.classes.image}
-        src="/helloholycity.jpg"
+        src="/helloholycity.png"
       />
       <div>
         <Link style={{ textDecoration: 'none' }} to="/singlechoice/intro/deal">

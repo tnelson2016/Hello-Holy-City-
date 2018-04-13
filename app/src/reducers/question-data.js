@@ -1,7 +1,7 @@
 export const initialState = [
   {
     questiongroupname: 'intro',
-    question: 'What is your deal?',
+    question: 'What brings you to Charleston?',
     questionKey: 'deal',
     type: 'single',
 
@@ -13,7 +13,7 @@ export const initialState = [
         next: { questiongroupname: 'category', questionKey: 'todo' }
       },
       {
-        optionText: 'Im thinking about a move!',
+        optionText: 'Im thinking about a move! (Coming soon!)',
         selected: false,
         value: 'move',
         next: { questiongroupname: 'category', questionKey: 'welcome' }
@@ -210,6 +210,7 @@ export const initialState = [
     questiongroupname: 'bar',
     question: 'Do want to take your dog to the bar?',
     questionKey: 'pet',
+    isEnd: true,
     type: 'single',
 
     options: [
@@ -220,7 +221,7 @@ export const initialState = [
         next: { questiongroupname: 'bar', questionKey: 'pet' }
       },
       {
-        optionText: 'No:(',
+        optionText: 'No :(',
         selected: false,
         value: 'no',
         next: { questiongroupname: 'bar', questionKey: 'pet' }
@@ -262,7 +263,7 @@ export const initialState = [
   },
   {
     questiongroupname: 'hotels',
-    question: 'Where do you want to crash?',
+    question: 'Where do you want stay?',
     questionKey: 'stay',
     type: 'single',
     options: [
@@ -306,18 +307,18 @@ export const initialState = [
   },
   {
     questiongroupname: 'hotels',
-    question: 'Do you want to bring pets?',
+    question: 'Are you want to bringing pets?',
     questionKey: 'pet',
     type: 'single',
     options: [
       {
-        optionText: 'Yes, pets are welcomed!',
+        optionText: 'Yes, I am',
         selected: false,
         value: 'yes',
         next: { questiongroupname: 'hotels', questionKey: 'wi-fi' }
       },
       {
-        optionText: 'No Fur-babies allowed',
+        optionText: 'No, not this time',
         selected: false,
         value: 'folly',
         next: { questiongroupname: 'hotels', questionKey: 'wi-fi' }
@@ -328,6 +329,7 @@ export const initialState = [
     questiongroupname: 'hotels',
     question: 'Do you need wi-fi?',
     questionKey: 'wi-fi',
+    isEnd: true,
     type: 'single',
     options: [
       {
@@ -348,6 +350,7 @@ export const initialState = [
     questiongroupname: 'hotels',
     question: 'What type of hotel are you looking for?',
     questionKey: 'hoteltype',
+    isEnd: true,
     type: 'single',
     options: [
       {
@@ -418,7 +421,7 @@ export const initialState = [
   },
   {
     questiongroupname: 'restaurants',
-    question: 'What ciy would you like to dine in?',
+    question: 'Which city would you like to dine in?',
     questionKey: 'location',
     type: 'single',
 
@@ -463,7 +466,7 @@ export const initialState = [
   },
   {
     questiongroupname: 'restaurants',
-    question: 'What type of grub are you looking for?',
+    question: 'What type of meal are you looking for?',
     questionKey: 'grub',
     type: 'single',
     options: [
@@ -503,6 +506,7 @@ export const initialState = [
     questiongroupname: 'restaurants',
     question: 'Would you like to make a reservation?',
     questionKey: 'reservations',
+    isEnd: true,
     type: 'single',
     options: [
       {
@@ -521,32 +525,38 @@ export const initialState = [
   },
   {
     questiongroupname: 'golf',
-    question: 'How much do you want to spend on the links?',
+    question: 'How exclusive do you want your golf experience?',
     questionKey: 'budget',
     type: 'single',
     options: [
       {
-        optionText: '$',
+        optionText: '1',
         selected: false,
-        value: '$',
+        value: '1',
         next: { questiongroupname: 'golf', questionKey: 'cart' }
       },
       {
-        optionText: '$$',
+        optionText: '2',
         selected: false,
-        value: 50,
+        value: 2,
         next: { questiongroupname: 'golf', questionKey: 'cart' }
       },
       {
-        optionText: '$$$',
+        optionText: '3',
         selected: false,
-        value: '$$$',
+        value: '3',
         next: { questiongroupname: 'golf', questionKey: 'cart' }
       },
       {
-        optionText: '$$$$',
+        optionText: '4',
         selected: false,
-        value: '$$$$',
+        value: '4',
+        next: { questiongroupname: 'golf', questionKey: 'cart' }
+      },
+      {
+        optionText: '5',
+        selected: false,
+        value: '5',
         next: { questiongroupname: 'golf', questionKey: 'cart' }
       }
     ]
@@ -610,7 +620,7 @@ export const initialState = [
       {
         optionText: 'Kiawah Island',
         selected: false,
-        value: 'james island',
+        value: 'kiawah island',
         next: { questiongroupname: 'golf', questionKey: 'lockers' }
       }
     ]
@@ -619,6 +629,7 @@ export const initialState = [
     questiongroupname: 'golf',
     question: 'Would you like the course to have a locker room?',
     questionKey: 'lockers',
+    isEnd: true,
     type: 'single',
     options: [
       {
@@ -639,32 +650,38 @@ export const initialState = [
 
   {
     questiongroupname: 'active',
-    question: 'How much do you want to spend to get active?',
+    question: 'On a scale of 1-5 how, active do you want to get?',
     questionKey: 'budget',
     type: 'single',
     options: [
       {
-        optionText: '$',
+        optionText: '1',
         selected: false,
-        value: '$',
+        value: '1',
         next: { questiongroupname: 'active', questionKey: 'facility' }
       },
       {
-        optionText: '$$',
+        optionText: '2',
         selected: false,
-        value: '$$',
+        value: '2',
         next: { questiongroupname: 'active', questionKey: 'facility' }
       },
       {
-        optionText: '$$$',
+        optionText: '3',
         selected: false,
-        value: '$$$',
+        value: '3',
         next: { questiongroupname: 'active', questionKey: 'facility' }
       },
       {
-        optionText: '$$$$',
+        optionText: '4',
         selected: false,
-        value: '$$$$',
+        value: '4',
+        next: { questiongroupname: 'active', questionKey: 'facility' }
+      },
+      {
+        optionText: '5',
+        selected: false,
+        value: '5',
         next: { questiongroupname: 'active', questionKey: 'facility' }
       }
     ]
@@ -724,19 +741,14 @@ export const initialState = [
         selected: false,
         value: 'adventure',
         next: { questiongroupname: 'active', questionKey: 'burn' }
-      },
-      {
-        optionText: 'Competition',
-        selected: false,
-        value: 'competition',
-        next: { questiongroupname: 'active', questionKey: 'burn' }
       }
     ]
   },
   {
     questiongroupname: 'active',
-    question: 'Where do you want to burn those calories',
+    question: 'Where do you want to burn those calories?',
     questionKey: 'burn',
+    isEnd: true,
     type: 'single',
 
     options: [
@@ -782,32 +794,38 @@ export const initialState = [
 
   {
     questiongroupname: 'attractions',
-    question: 'How much do you want to spend to see the beauty of Charleston?',
+    question: 'On scale of 1 to 5 what is your curiosity level?',
     questionKey: 'budget',
     type: 'single',
     options: [
       {
-        optionText: '$',
+        optionText: '1',
         selected: false,
-        value: '$',
+        value: '1',
         next: { questiongroupname: 'attractions', questionKey: 'location' }
       },
       {
-        optionText: '$$',
+        optionText: '2',
         selected: false,
-        value: '$$',
+        value: '2',
         next: { questiongroupname: 'attractions', questionKey: 'location' }
       },
       {
-        optionText: '$$$',
+        optionText: '3',
         selected: false,
-        value: '$$$',
+        value: '3',
         next: { questiongroupname: 'attractions', questionKey: 'location' }
       },
       {
-        optionText: '$$$$',
+        optionText: '4',
         selected: false,
-        value: '$$$$',
+        value: '4',
+        next: { questiongroupname: 'attractions', questionKey: 'location' }
+      },
+      {
+        optionText: '5',
+        selected: false,
+        value: '5',
         next: { questiongroupname: 'attractions', questionKey: 'location' }
       }
     ]
@@ -862,6 +880,7 @@ export const initialState = [
     questiongroupname: 'attractions',
     question: 'What would you like to explore?',
     questionKey: 'explore',
+    isEnd: true,
     type: 'single',
     options: [
       {
@@ -893,26 +912,26 @@ export const initialState = [
   {
     questiongroupname: 'category',
     question:
-      'Thanks for considering Charleston you next home! Here is a little help getting started.',
+      'Thanks for considering Charleston your next home! Here is a little help getting started.',
     questionKey: 'welcome',
     type: 'single',
     options: [
       {
-        optionText: 'Search for employment',
+        optionText: 'Search for employment (Under Construction)',
         selected: false,
         value: 'employment',
         next: { questiongroupname: 'category', questionKey: 'welcome' }
       },
       {
-        optionText: 'Search for a realtor',
+        optionText: 'Search for a realtor (Under Construction)',
         selected: false,
-        value: 'nature',
+        value: 'realtor',
         next: { questiongroupname: 'category', questionKey: 'welcome' }
       },
       {
-        optionText: 'Search Apartments',
+        optionText: 'Search Apartments (Under Construction',
         selected: false,
-        value: 'Tours',
+        value: 'apartment',
         next: { questiongroupname: 'category', questionKey: 'welcome' }
       }
     ]

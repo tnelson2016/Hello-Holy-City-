@@ -25,28 +25,13 @@ const sideList = (
           <ListItemText primary="Home" />
         </ListItem>
       </Link>
-      <Link to="/Login" className="router-link" style={linkStyle}>
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Login" />
-        </ListItem>
-      </Link>
-      <Link to="/Featurs" className="router-link" style={linkStyle}>
+
+      <Link to="/Features" className="router-link" style={linkStyle}>
         <ListItem button>
           <ListItemIcon>
             <ViewList />
           </ListItemIcon>
           <ListItemText primary="Upcoming Features" />
-        </ListItem>
-      </Link>
-      <Link to="/Admin" className="router-link" style={linkStyle}>
-        <ListItem button>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Admin" />
         </ListItem>
       </Link>
     </List>

@@ -1,16 +1,16 @@
 import React from 'react'
-import Typography from 'material-ui/Typography'
-import { withStyles } from 'material-ui/styles'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Typography from 'material-ui/Typography'
+import Button from 'material-ui/Button'
+import { withStyles } from 'material-ui/styles'
+import MenuAppBar from '../../Components/MenuAppBar'
+import { connect } from 'react-redux'
 import { ListItem, List } from 'material-ui/List'
 import PropTypes from 'prop-types'
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card'
-import Button from 'material-ui/Button'
 import { find, pathOr, map, compose } from 'ramda'
 import questions from '../../reducers/questions'
 import { SINGLE_CHOICE_QUESTION_ANSWERED } from '../../constants'
-import MenuAppBar from '../../Components/MenuAppBar'
 import Toolbar from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
@@ -72,6 +72,7 @@ function SingleChoiceQuestion(props) {
           // showBackArrow={false}
         />
       </center>
+
       <center>
         <div>
           <center>
@@ -95,6 +96,7 @@ function SingleChoiceQuestion(props) {
                   value={option.value}
                   key={option.value}
                   onClick={props.buttonClick(
+                    foundQuestion.isEnd || false,
                     foundQuestion.questionKey,
                     foundQuestion.questiongroupname,
                     option.next.questiongroupname,
@@ -120,8 +122,6 @@ SingleChoiceQuestion.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log('What is state', state)
-
   return {
     questions: state.questions,
     drawers: state.drawers
@@ -131,6 +131,7 @@ function mapStateToProps(state) {
 const mapActionsToProps = dispatch => {
   return {
     buttonClick: (
+      isEnd,
       currentquestionKey,
       currentgroupname,
       nextquestiongroupname,
@@ -143,15 +144,15 @@ const mapActionsToProps = dispatch => {
         payload: { currentgroupname, currentquestionKey, value }
       })
 
-      const mapActionsToProps = (dispatch, getState) => {
-        return {
-          toggleDrawer: () => dispatch({ type: TOGGLE_DRAWER })
-        }
+      let navToURL = ''
+      if (isEnd) {
+        navToURL = '/confirm-results'
+      } else {
+        navToURL = nextquestiongroupname
+          ? `/singlechoice/${nextquestiongroupname}/${nextquestionKey}`
+          : `/singlechoice/${nextquestionKey}`
       }
 
-      const navToURL = nextquestiongroupname
-        ? `/singlechoice/${nextquestiongroupname}/${nextquestionKey}`
-        : `/singlechoice/${nextquestionKey}`
       history.push(navToURL)
     }
   }

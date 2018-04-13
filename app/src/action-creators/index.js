@@ -16,7 +16,7 @@ import {
 } from '../constants'
 const url = 'http://localhost:5000'
 // const url =
-// 'https://api.yelp.com/v3/businesses/search?location=charleston&limit=50'
+// ;('https://api.yelp.com/v3/businesses/search?location=charleston&limi t=50')
 
 export const getBars = async (dispatch, getState) => {
   const res = await fetch(`${url}/bars`)
@@ -54,15 +54,43 @@ export const getRestaurants = async (dispatch, getState) => {
   dispatch({ type: SET_RESTAURANTS, payload: results })
 }
 
-export const filterResult = questions => async (dispatch, getState) => {
+// need to pass history as second arg to this function
+export const filterResult = (questions, history) => async (
+  dispatch,
+  getState
+) => {
   const foundQuestion = find(q => q.questionKey === 'todo', questions)
-  console.log('foundQuestion', foundQuestion)
-  const todoAnswer = find(o => o.selected === true, 'options')
+  console.log('foundQuestion.options', foundQuestion.options)
+  const todoAnswer = find(o => o.selected === true, foundQuestion.options)
   console.log('todoAnswer', todoAnswer)
-  if (todoAnswer === 'golf') fetch(`${url}/courses`)
-  else if (todoAnswer === 'hotel') fetch(`${url}/hotels`)
-  else if (todoAnswer === 'bar') fetch(`${url}/bars`)
-  else if (todoAnswer === 'resturant') fetch(`${url}/restaurants`)
-  else if (todoAnswer === 'attraction') fetch(`${url}/attractions`)
-  else if (todoAnswer === 'active') fetch(`${url}/activities`)
+
+  if (todoAnswer.value === 'golf') {
+    const golfCourses = await fetch(`${url}/courses`).then(res => res.json())
+    dispatch({ type: SET_COURSES, payload: golfCourses })
+    history.push('/results/golf')
+  } else if (todoAnswer === 'hotel') {
+    const hotels = await fetch(`${url}/hotels`).then(res => res.json())
+    dispatch({ type: SET_HOTELS, payload: hotels })
+    history.push('/results/hotel')
+  } else if (todoAnswer === 'bar') {
+    const bars = await fetch(`${url}/bars`).then(res => res.json())
+    dispatch({ type: SET_BARS, payload: bars })
+    history.push('results/hotel')
+  } else if (todoAnswer === 'resturant') {
+    const restaurants = await fetch(`${url}/restaurants`).then(res =>
+      res.json()
+    )
+    dispatch({ type: SET_RESTAURANTS, payload: restaurants })
+    history.push('results/restaurant')
+  } else if (todoAnswer === 'attraction') {
+    const attractions = await fetch(`${url}/attractions`).then(res =>
+      res.json()
+    )
+    dispatch({ type: SET_ATTRACTIONS, payload: attractions })
+    history.push('results/attraction')
+  } else if (todoAnswer === 'active') {
+    const activities = await fetch(`${url}/activities`).then(res => res.json)
+    dispatch({ type: SET_ACTIVITIES, payload: activities })
+    history.push('results/activities')
+  }
 }

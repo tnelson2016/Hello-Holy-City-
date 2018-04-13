@@ -10,7 +10,9 @@ import RestaurantResults from './pages/restaurant-results'
 import AttractionResults from './pages/attraction-results'
 import ActiveResults from './pages/active-results'
 import SingleChoiceQuestion from './pages/questions/single-choice-questions'
+import ConfirmResults from './pages/confirm-results'
 import { update } from 'react-addons-update'
+import Features from './pages/features'
 
 class App extends Component {
   render() {
@@ -43,6 +45,8 @@ class App extends Component {
               component={AttractionResults}
             />
             <Route exact path="/results/active" component={ActiveResults} />
+            <Route exact path="/features" component={Features} />
+            <Route exact path="/confirm-results" component={ConfirmResults} />
           </Switch>
         </div>
       </BrowserRouter>
