@@ -37,13 +37,13 @@ export const getCourses = async (dispatch, getState) => {
 }
 
 export const getActivities = async (dispatch, getState) => {
-  const res = await fetch(`${url}/bars`)
+  const res = await fetch(`${url}/activities`)
   const results = await res.json()
   dispatch({ type: SET_ACTIVITIES, payload: results })
 }
 
 export const getAttractions = async (dispatch, getState) => {
-  const res = await fetch(`${url}/bars`)
+  const res = await fetch(`${url}/attractions`)
   const results = await res.json()
   dispatch({ type: SET_ATTRACTIONS, payload: results })
 }
@@ -64,32 +64,32 @@ export const filterResult = (questions, history) => async (
   const todoAnswer = find(o => o.selected === true, foundQuestion.options)
   console.log('todoAnswer', todoAnswer)
 
-  if (todoAnswer.value === 'golf') {
-    const golfCourses = await fetch(`${url}/courses`).then(res => res.json())
-    dispatch({ type: SET_COURSES, payload: golfCourses })
-    history.push('/results/golf')
-  } else if (todoAnswer === 'hotel') {
+  if (todoAnswer.value === 'course') {
+    const courses = await fetch(`${url}/courses`).then(res => res.json())
+    dispatch({ type: SET_COURSES, payload: courses })
+    history.push('results/courses')
+  } else if (todoAnswer.value === 'hotel') {
     const hotels = await fetch(`${url}/hotels`).then(res => res.json())
     dispatch({ type: SET_HOTELS, payload: hotels })
-    history.push('/results/hotel')
-  } else if (todoAnswer === 'bar') {
+    history.push('results/hotels')
+  } else if (todoAnswer.value === 'bar') {
     const bars = await fetch(`${url}/bars`).then(res => res.json())
     dispatch({ type: SET_BARS, payload: bars })
-    history.push('results/hotel')
-  } else if (todoAnswer === 'resturant') {
+    history.push('results/bars')
+  } else if (todoAnswer.value === 'restaurant') {
     const restaurants = await fetch(`${url}/restaurants`).then(res =>
       res.json()
     )
     dispatch({ type: SET_RESTAURANTS, payload: restaurants })
-    history.push('results/restaurant')
-  } else if (todoAnswer === 'attraction') {
+    history.push('results/restaurants')
+  } else if (todoAnswer.value === 'attraction') {
     const attractions = await fetch(`${url}/attractions`).then(res =>
       res.json()
     )
     dispatch({ type: SET_ATTRACTIONS, payload: attractions })
-    history.push('results/attraction')
-  } else if (todoAnswer === 'active') {
-    const activities = await fetch(`${url}/activities`).then(res => res.json)
+    history.push('results/attractions')
+  } else if (todoAnswer.value === 'active') {
+    const activities = await fetch(`${url}/activities`).then(res => res.json())
     dispatch({ type: SET_ACTIVITIES, payload: activities })
     history.push('results/activities')
   }

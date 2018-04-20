@@ -9,6 +9,11 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { GET_QUESTIONS } from './constants'
 import { getBars } from './action-creators/index'
+import { getActivities } from './action-creators/index'
+import { getCourses } from './action-creators/index'
+import { getAttractions } from './action-creators/index'
+import { getHotels } from './action-creators/index'
+import { getRestaurants } from './action-creators/index'
 import indigo from 'material-ui/colors/indigo'
 import purple from 'material-ui/colors/purple'
 import red from 'material-ui/colors/red'
@@ -36,8 +41,8 @@ ReactDOM.render(
 registerServiceWorker()
 
 store.dispatch(getBars)
-// store.dispatch(getRestaurants)
-// store.dispatch(getHotels)
-// store.dispatch(getCourses)
-// store.dispatch(getActivities)
-// store.dispatch(getAttractions)
+store.dispatch(getRestaurants)
+store.dispatch(getHotels)
+store.dispatch(getCourses)
+store.dispatch(getActivities)
+store.dispatch(getAttractions)

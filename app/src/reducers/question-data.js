@@ -650,7 +650,7 @@ export const initialState = [
 
   {
     questiongroupname: 'active',
-    question: 'On a scale of 1-5 how, active do you want to get?',
+    question: 'On a scale of 1-5, how active do you want to get?',
     questionKey: 'budget',
     type: 'single',
     options: [

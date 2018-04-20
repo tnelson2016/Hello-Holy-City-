@@ -56,7 +56,7 @@ const ConfirmResult = props => (
           // color="primary"
           variant="display1"
         >
-          Are you ready for your results?!
+          Sorry, no results match your selections.
         </Typography>
         <Typography
           className={props.classes.button}
@@ -64,12 +64,13 @@ const ConfirmResult = props => (
           variant="display1"
         />
       </h2>
+
       <div>
         <Button
           variant="raised"
           onClick={props.onClick(props.questions, props.history)}
         >
-          Click Here to see!
+          Click Here and try a new route!
         </Button>
       </div>
     </center>

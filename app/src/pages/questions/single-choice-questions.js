@@ -139,6 +139,7 @@ const mapActionsToProps = dispatch => {
       value,
       history
     ) => e => {
+      console.log('click')
       dispatch({
         type: SINGLE_CHOICE_QUESTION_ANSWERED,
         payload: { currentgroupname, currentquestionKey, value }

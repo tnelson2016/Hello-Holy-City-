@@ -11,7 +11,8 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    width: '500px'
   },
   gridList: {
     width: 1000,
@@ -22,7 +23,7 @@ const styles = theme => ({
   }
 })
 
-const Sailboat = props => {
+const ActiveTile = props => {
   const {
     name,
     price,
@@ -31,16 +32,21 @@ const Sailboat = props => {
     url,
     display_phone,
     image_url
-  } = props.golfCourse
+  } = props.ActiveTile
 
   return (
-    <GridListTile key={image_url} style={{ height: '105%', width: '200%' }}>
-      <img src={image_url} />
+    <GridListTile key={image_url} className={props.classes.root}>
+      <div>
+        <img
+          style={{ maxWidth: '500px', maxHeight: '400px' }}
+          src={image_url}
+        />
+      </div>
       <GridListTileBar
         title={name}
         subtitle={url}
         actionIcon={
-          <IconButton className={icon}>
+          <IconButton className={props.classes.icon}>
             <Info />
           </IconButton>
         }
@@ -48,5 +54,6 @@ const Sailboat = props => {
     </GridListTile>
   )
 }
+// style={{ height: '105%', width: '200%' }}
 
-export default withStyles(styles)(Sailboat)
+export default withStyles(styles)(ActiveTile)

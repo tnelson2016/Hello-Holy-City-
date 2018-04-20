@@ -16,24 +16,28 @@ import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import Drawer from '../../Components/Drawer'
 import { TOGGLE_DRAWER } from '../../constants'
-import Sailboat from '../../Components/MenuAppBar'
-import { GridListTile, GridListTileBar, GridList } from 'material-ui/GridList'
-import { filterResult } from '../../action-creators'
+import CourseTile from '../../Components/course-tile'
+import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList'
+//import { filterResult } from '../../action-creators'
 
-const GolfResults = props => {
+const CourseResults = props => {
+  const { courses } = props
+
   return (
-    <GridList>
-      {map(tile => <Sailboat golfCourse={tile} />)(filterResult)}
-    </GridList>
+    <div>
+      <GridList>
+        {map(course => <CourseTile CourseTile={course} />, courses)}
+      </GridList>
+    </div>
   )
 }
 
 function mapStateToProps(state) {
   return {
-    results: state.filterResult
+    courses: state.courses
   }
 }
 
 const connector = connect(mapStateToProps)
 
-export default GolfResults
+export default connector(CourseResults)

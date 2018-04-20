@@ -56,7 +56,7 @@ const ConfirmResult = props => (
           // color="primary"
           variant="display1"
         >
-          Features coming soon:
+          Features coming soon: Login, Moving Help, Bread Crumbs
         </Typography>
         <Typography
           className={props.classes.button}

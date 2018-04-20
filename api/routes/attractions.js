@@ -17,6 +17,6 @@ module.exports = app => {
   })
 
   app.get('/attractions/:id', (req, res) => {
-    getAttraction(req.params.id).then(attractions => res.send(attraction))
+    getAttraction(req.params.id).then(attraction => res.send(attraction))
   })
 }

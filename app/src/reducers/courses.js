@@ -3,7 +3,6 @@ import { SET_COURSES, SET_COURSE } from '../constants'
 export const courses = (state = [], action) => {
   switch (action.type) {
     case SET_COURSES:
-      console.log('courses reducer', action.payload)
       return action.payload
     default:
       return state
